@@ -136,6 +136,8 @@ export const getAllPost = TryCatch(async (req, res, next) => {
 
   if (categories) {
     query.categories = categories;
+  } else {
+    query.categories = { $nin: ["73"] };
   }
   if (primaryCategory) {
     query.primaryCategory = primaryCategory;
