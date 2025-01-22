@@ -189,7 +189,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
 
 export const getPostDetails = TryCatch(async (req, res, next) => {
   const id: string = req.params.id;
-  const post = await Post.findById(id).populate("image").populate("tags");
+  const post = await Post.findById(id).populate("image").populate("tags").populate("User");
   if (!post) return next(new ErrorHandler("Invalid Post id", 400));
 
   return res.status(200).json({
