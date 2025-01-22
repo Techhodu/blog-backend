@@ -134,18 +134,15 @@ export const getAllPost = TryCatch(async (req, res, next) => {
     title: { $regex: search, $options: "i" },
   };
 
-// Log the categories value
-console.log("Categories from query:", categories);
+  if (categories !== undefined) {
+    query.categories = { $nin: ["73"] };
+  }
+  if (categories === "") {
+    query.categories = { $nin: ["73"] };
+  } else {
+    query.categories = categories;
+  }
 
-// Modify the categories condition
-if (categories) {
-  query.categories = categories;
-} else if (categories === "") {
-  query.categories = { $nin: ["73"] };
-}
-
-// Log the final query
-console.log("Final Query:", query);
   if (primaryCategory) {
     query.primaryCategory = primaryCategory;
   }
