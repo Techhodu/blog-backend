@@ -6,6 +6,7 @@ interface IUser extends Document {
   name: string;
   email: string;
   photo: string;
+  description: string;
   role: "admin" | "user";
   gender: "male" | "female";
   dob: Date;
@@ -24,6 +25,9 @@ const schema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "Please enter Name"],
+    },
+    description: {
+      type: String,
     },
     email: {
       type: String,
@@ -57,8 +61,8 @@ const schema = new mongoose.Schema(
 
 schema.virtual("age").get(function () {
   const today = new Date();
-  const dob:Date = this.dob;
-  let age:number = today.getFullYear() - dob.getFullYear();
+  const dob: Date = this.dob;
+  let age: number = today.getFullYear() - dob.getFullYear();
 
   if (
     today.getMonth() < dob.getMonth() ||
