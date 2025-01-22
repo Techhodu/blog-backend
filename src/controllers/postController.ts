@@ -133,6 +133,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   const query: queryInterface = {
     title: { $regex: search, $options: "i" },
   };
+
   // Modify the categories condition
   if (categories) {
     // If category is specified in query, use that category
@@ -166,7 +167,9 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   if (startDate && endDate) {
     query.createdAt = { $gte: startDate, $lte: endDate };
   }
-
+  console.log("categories")
+  console.log(categories)
+  console.log(query)
   const skip = (page - 1) * limit; // 1 * 4 = 4
   const posts = await Post.find(query)
     .populate("image")
