@@ -137,6 +137,9 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   if (categories !== undefined) {
     query.categories = { $nin: ["73"] };
   }
+  if (categories === "oh") {
+    query.categories = { $nin: ["73"] };
+  } 
   if (categories === "") {
     query.categories = { $nin: ["73"] };
   } else {
@@ -189,7 +192,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
 
 export const getPostDetails = TryCatch(async (req, res, next) => {
   const id: string = req.params.id;
-  const post = await Post.findById(id).populate("image").populate("tags").populate("User");
+  const post = await Post.findById(id).populate("image").populate("tags").populate("createdBy");
   if (!post) return next(new ErrorHandler("Invalid Post id", 400));
 
   return res.status(200).json({
