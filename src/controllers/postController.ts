@@ -134,15 +134,18 @@ export const getAllPost = TryCatch(async (req, res, next) => {
     title: { $regex: search, $options: "i" },
   };
 
-  // Modify the categories condition
-  if (categories) {
-    // If category is specified in query, use that category
-    query.categories = categories;
-  } 
-  if( !categories && categories=="") {
-    // If no category specified, exclude posts containing category "73"
-    query.categories = { $nin: ["73"] };
-  }
+// Log the categories value
+console.log("Categories from query:", categories);
+
+// Modify the categories condition
+if (categories) {
+  query.categories = categories;
+} else if (categories === "") {
+  query.categories = { $nin: ["73"] };
+}
+
+// Log the final query
+console.log("Final Query:", query);
   if (primaryCategory) {
     query.primaryCategory = primaryCategory;
   }
@@ -167,9 +170,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   if (startDate && endDate) {
     query.createdAt = { $gte: startDate, $lte: endDate };
   }
-  console.log("categories")
-  console.log(categories)
-  console.log(query)
+
   const skip = (page - 1) * limit; // 1 * 4 = 4
   const posts = await Post.find(query)
     .populate("image")
