@@ -131,14 +131,18 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   }
 
   const query: queryInterface = {
-    title: { $regex: search, $options: "i" },
+    title: { $regex: search, $options: "i" }
   };
 
+  // Modify the categories condition
   if (categories) {
+    // If category is specified in query, use that category
     query.categories = categories;
   } else {
+    // If no category specified, exclude posts containing category "73"
     query.categories = { $nin: ["73"] };
   }
+
   if (primaryCategory) {
     query.primaryCategory = primaryCategory;
   }
