@@ -90,7 +90,7 @@ export const newPost = TryCatch(
       schemaData,
       version,
       _id: uid,
-      createdBy: 2,
+      createdBy: "u1",
     });
 
     return res.status(201).json({
@@ -142,6 +142,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   } 
   if (categories === "") {
     query.categories = { $nin: ["73"] };
+    query.categories = { $nin: [73] };
   } else {
     query.categories = categories;
   }
