@@ -36,7 +36,7 @@ app.use("/api/v1/translater", translaterRoutes);
 
 app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => {
-  res.send('api working on => "/api/v1"');
+  res.send('api working on => "/api/v1👌👌..."');
 });
 app.use(errorMiddleware);
 
