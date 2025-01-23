@@ -134,7 +134,6 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   const query: queryInterface = {
     title: { $regex: search, $options: "i" },
   };
-  
   if (!categories) {
     query.version = 1;    
   } else {
