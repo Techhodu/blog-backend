@@ -8,7 +8,7 @@ const User_1 = require("../models/User");
 const utility_class_1 = __importDefault(require("../utils/utility-class"));
 const error_1 = require("../middlewares/error");
 exports.newUser = (0, error_1.TryCatch)(async (req, res, next) => {
-    const { name, email, photo, role, dob, gender, _id } = req.body;
+    const { name, email, photo, role, dob, gender, _id, description } = req.body;
     let user = await User_1.User.findById(_id);
     if (user) {
         res.status(200).json({
@@ -27,6 +27,7 @@ exports.newUser = (0, error_1.TryCatch)(async (req, res, next) => {
         // role,
         dob: new Date(dob),
         gender,
+        description,
         _id,
     });
     return res.status(201).json({

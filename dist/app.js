@@ -36,7 +36,7 @@ app.use("/api/v1/files/", image_Routes_1.default);
 app.use("/api/v1/translater", translater_Routes_1.default);
 app.use("/uploads", express_1.default.static("uploads"));
 app.get("/", (req, res) => {
-    res.send('api working on => "/api/v1"');
+    res.send('api working on => "/api/v1👌👌..."');
 });
 app.use(error_1.errorMiddleware);
 cloudinary_1.v2.config({

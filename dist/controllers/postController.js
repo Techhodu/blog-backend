@@ -60,7 +60,7 @@ exports.newPost = (0, error_1.TryCatch)(async (req, res, next) => {
         schemaData,
         version,
         _id: uid,
-        createdBy: 2,
+        createdBy: "ritik",
     });
     return res.status(201).json({
         success: true,
@@ -86,7 +86,10 @@ exports.getAllPost = (0, error_1.TryCatch)(async (req, res, next) => {
     const query = {
         title: { $regex: search, $options: "i" },
     };
-    if (categories) {
+    if (!categories) {
+        query.version = 1;
+    }
+    else {
         query.categories = categories;
     }
     if (primaryCategory) {
@@ -132,7 +135,7 @@ exports.getAllPost = (0, error_1.TryCatch)(async (req, res, next) => {
 });
 exports.getPostDetails = (0, error_1.TryCatch)(async (req, res, next) => {
     const id = req.params.id;
-    const post = await postModel_1.Post.findById(id).populate("image").populate("tags");
+    const post = await postModel_1.Post.findById(id).populate("createdBy").populate("image").populate("tags");
     if (!post)
         return next(new utility_class_1.default("Invalid Post id", 400));
     return res.status(200).json({

@@ -15,6 +15,9 @@ const schema = new mongoose_1.default.Schema({
         type: String,
         required: [true, "Please enter Name"],
     },
+    description: {
+        type: String,
+    },
     email: {
         type: String,
         unique: [true, "Email already Exist"],

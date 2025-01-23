@@ -121,6 +121,7 @@ export const getAllPost = TryCatch(async (req, res, next) => {
     title: { $regex: any; $options: string };
     primaryCategory?: any;
     categories?: any;
+    version?: number;
     subcategories?: any;
     tags?: any;
     authors?: any;
@@ -133,16 +134,9 @@ export const getAllPost = TryCatch(async (req, res, next) => {
   const query: queryInterface = {
     title: { $regex: search, $options: "i" },
   };
-
-  if (categories !== undefined) {
-    query.categories = { $nin: ["73"] };
-  }
-  if (categories === "oh") {
-    query.categories = { $nin: ["73"] };
-  } 
-  if (categories === "") {
-    query.categories = { $nin: ["73"] };
-    query.categories = { $nin: [73] };
+  
+  if (!categories) {
+    query.version = 1;    
   } else {
     query.categories = categories;
   }
