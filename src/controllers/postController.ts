@@ -90,7 +90,7 @@ export const newPost = TryCatch(
       schemaData,
       version,
       _id: uid,
-      createdBy: "ritik",
+      createdBy: "sanjeev-kumar",
     });
 
     return res.status(201).json({

@@ -60,7 +60,7 @@ exports.newPost = (0, error_1.TryCatch)(async (req, res, next) => {
         schemaData,
         version,
         _id: uid,
-        createdBy: "ritik",
+        createdBy: "sanjeev-kumar",
     });
     return res.status(201).json({
         success: true,
