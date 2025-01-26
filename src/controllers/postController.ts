@@ -135,10 +135,12 @@ export const getAllPost = TryCatch(async (req, res, next) => {
     title: { $regex: search, $options: "i" },
   };
   if (!categories) {
-    query.version = 1;    
+    if (!createdBy) {
+      query.version = 1;
+    }       
   } else {
-    query.categories = categories;
-  }
+    query.categories = categories;
+  }
 
   if (primaryCategory) {
     query.primaryCategory = primaryCategory;

@@ -32,8 +32,8 @@ const schema = new mongoose.Schema(
     email: {
       type: String,
       unique: [true, "Email already Exist"],
-      required: [true, "Please enter Name"],
-      validate: validator.default.isEmail,
+      // required: [true, "Please enter Name"],
+      // validate: validator.default.isEmail,
     },
     photo: {
       type: String,
